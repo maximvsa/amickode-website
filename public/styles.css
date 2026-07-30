@@ -22,7 +22,7 @@
   --border-bright: #3a495a;
   --text: #f1f4f7;
   --muted: #98a4b3;
-  --faint: #667282;
+  --faint: #748191;
   --accent: #df8b3e;
   --accent-cool: #64a6c6;
 }
@@ -421,9 +421,9 @@ a {
 
 .social-card:hover,
 .social-card:focus-visible {
-  border-color: var(--border-bright);
-  background: var(--surface-raised);
-  outline: none;
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .social-card:hover .platform-icon,
