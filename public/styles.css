@@ -189,8 +189,8 @@ a {
   position: absolute;
   z-index: -2;
   top: 50%;
-  left: 43%;
-  width: 1120px;
+  left: 24%;
+  width: 1400px;
   max-width: none;
   opacity: 0.2;
   filter: blur(5px);
@@ -466,7 +466,7 @@ a {
   }
 
   .hero-logo {
-    left: 23%;
+    left: 5%;
   }
 
   .section-heading {
