@@ -1,57 +1,571 @@
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/geist-mono.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --background: #070a0e;
+  --surface: #0b1016;
+  --surface-raised: #0f151d;
+  --border: #26313e;
+  --border-bright: #3a495a;
+  --text: #f1f4f7;
+  --muted: #98a4b3;
+  --faint: #667282;
+  --accent: #df8b3e;
+  --accent-cool: #64a6c6;
+}
+
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+  scroll-padding-top: 5rem;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    padding: 48px 24px;
+  position: relative;
+  margin: 0;
+  background:
+    linear-gradient(rgba(61, 76, 94, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(61, 76, 94, 0.045) 1px, transparent 1px),
+    var(--background);
+  background-size: 64px 64px;
+  color: var(--text);
+  font-family: "Geist", Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
 
-    background: #0c0d10;
-    color: #f2f2f2;
-
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
+body::before {
+  position: fixed;
+  z-index: 0;
+  inset: -80px;
+  background: url("/images/amickode-technologies-wide.png") center 18vh /
+    min(1480px, 125vw) auto no-repeat;
+  content: "";
+  filter: blur(28px);
+  opacity: 0.045;
+  pointer-events: none;
 }
 
 main {
-    width: 100%;
-    max-width: 720px;
-    margin: 0 auto;
+  position: relative;
+  z-index: 0;
 }
 
-h1 {
-    margin-bottom: 8px;
-    font-size: clamp(2.25rem, 8vw, 4.5rem);
-    line-height: 1;
+a {
+  color: inherit;
 }
 
-.subtitle {
-    margin-top: 0;
-    color: #b8bcc6;
-    font-size: 1.15rem;
+::selection {
+  background: var(--accent);
+  color: #080a0d;
 }
 
-.links {
-    display: flex;
-    flex-wrap: wrap;
+.section-shell {
+  width: min(1180px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.site-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1180px, calc(100% - 48px));
+  min-height: 118px;
+  margin-inline: auto;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: block;
+  width: 66px;
+  height: 66px;
+  flex: 0 0 auto;
+}
+
+.brand-name {
+  font-family: "Geist Mono", monospace;
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: 0.105em;
+  text-transform: uppercase;
+}
+
+.brand-name span {
+  color: var(--muted);
+}
+
+.site-nav {
+  display: flex;
+  gap: 28px;
+}
+
+.site-nav a {
+  color: var(--muted);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--text);
+}
+
+.hero {
+  padding-block: 38px 96px;
+}
+
+.hero-panel {
+  position: relative;
+  min-height: 670px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  isolation: isolate;
+}
+
+.hero-panel::before,
+.hero-panel::after {
+  position: absolute;
+  z-index: 3;
+  width: 24px;
+  height: 24px;
+  content: "";
+  pointer-events: none;
+}
+
+.hero-panel::before {
+  top: 13px;
+  left: 13px;
+  border-top: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+}
+
+.hero-panel::after {
+  right: 13px;
+  bottom: 13px;
+  border-right: 1px solid var(--accent-cool);
+  border-bottom: 1px solid var(--accent-cool);
+}
+
+.hero-grid {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(rgba(102, 125, 151, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(102, 125, 151, 0.07) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: linear-gradient(to right, transparent 18%, black 78%);
+}
+
+.hero-logo {
+  position: absolute;
+  z-index: -2;
+  top: 50%;
+  left: 38%;
+  width: 1120px;
+  max-width: none;
+  opacity: 0.2;
+  filter: blur(8px);
+  transform: translateY(-50%) rotate(-1deg);
+  user-select: none;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: 670px;
+  max-width: 750px;
+  padding: 112px 72px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.eyebrow {
+  margin: 0 0 24px;
+  color: var(--accent-cool);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(3.5rem, 7vw, 6.7rem);
+  font-weight: 620;
+  letter-spacing: -0.065em;
+  line-height: 0.94;
+}
+
+.hero-description {
+  max-width: 590px;
+  margin: 32px 0 0;
+  color: #bdc5cf;
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.primary-link {
+  display: inline-flex;
+  min-height: 48px;
+  margin-top: 40px;
+  padding: 0 18px;
+  align-items: center;
+  gap: 34px;
+  border: 1px solid var(--border-bright);
+  background: rgba(15, 21, 29, 0.82);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.74rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.primary-link:hover,
+.primary-link:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #090b0e;
+}
+
+.content-section {
+  padding-block: 96px;
+  border-top: 1px solid var(--border);
+}
+
+.section-heading {
+  display: grid;
+  margin-bottom: 46px;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 430px);
+  gap: 48px;
+  align-items: end;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 16px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 4.7rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.section-heading > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.project-card {
+  display: flex;
+  min-height: 360px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(135deg, rgba(223, 139, 62, 0.045), transparent 44%),
+    var(--surface);
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-card:nth-child(2) {
+  background:
+    linear-gradient(135deg, rgba(100, 166, 198, 0.045), transparent 44%),
+    var(--surface);
+}
+
+.project-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.project-number {
+  color: var(--faint);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.72rem;
+}
+
+.status {
+  padding: 6px 9px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-type {
+  margin: 0 0 12px;
+  color: var(--accent-cool);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.project-card h3 {
+  margin: 0;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 580;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.project-description {
+  max-width: 470px;
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.connect-heading {
+  align-items: start;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.social-card {
+  display: grid;
+  min-height: 104px;
+  padding: 20px;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  text-decoration: none;
+}
+
+.platform-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--muted);
+  fill: currentColor;
+}
+
+.social-card > span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.social-card strong {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.social-card small {
+  overflow: hidden;
+  margin-top: 3px;
+  color: var(--faint);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.65rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.social-card .external-arrow {
+  color: var(--faint);
+  font-size: 0.95rem;
+}
+
+.social-card:hover,
+.social-card:focus-visible {
+  border-color: var(--border-bright);
+  background: var(--surface-raised);
+  outline: none;
+}
+
+.social-card:hover .platform-icon,
+.social-card:focus-visible .platform-icon,
+.social-card:hover .external-arrow,
+.social-card:focus-visible .external-arrow {
+  color: var(--accent);
+}
+
+.site-footer {
+  display: flex;
+  min-height: 104px;
+  padding-block: 28px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  color: var(--faint);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+@media (max-width: 850px) {
+  .hero {
+    padding-bottom: 72px;
+  }
+
+  .hero-panel,
+  .hero-copy {
+    min-height: 600px;
+  }
+
+  .hero-copy {
+    padding: 88px 42px;
+  }
+
+  .hero-logo {
+    left: 23%;
+  }
+
+  .section-heading {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .section-heading > p {
+    max-width: 600px;
+  }
+
+  .social-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .section-shell,
+  .site-header {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .site-header {
+    min-height: 88px;
+  }
+
+  .brand {
     gap: 12px;
-    margin-top: 32px;
+  }
+
+  .brand-mark {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-name {
+    font-size: 0.78rem;
+  }
+
+  .brand-name span {
+    display: none;
+  }
+
+  .site-nav {
+    gap: 16px;
+  }
+
+  .hero {
+    padding-block: 20px 58px;
+  }
+
+  .hero-panel,
+  .hero-copy {
+    min-height: 570px;
+  }
+
+  .hero-copy {
+    padding: 80px 24px 100px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.1rem, 15vw, 4.8rem);
+  }
+
+  .hero-description {
+    margin-top: 26px;
+    font-size: 0.98rem;
+  }
+
+  .hero-logo {
+    left: 2%;
+    width: 820px;
+  }
+
+  .content-section {
+    padding-block: 70px;
+  }
+
+  .project-grid,
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    min-height: 310px;
+  }
+
+  .site-footer {
+    padding-block: 26px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
 
-.links a {
-    display: inline-block;
-    padding: 10px 16px;
-
-    border: 1px solid #4c5260;
-    border-radius: 6px;
-
-    color: #f2f2f2;
-    text-decoration: none;
-}
-
-.links a:hover,
-.links a:focus-visible {
-    background: #f2f2f2;
-    color: #0c0d10;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
 }
