@@ -366,10 +366,6 @@ a {
   line-height: 1.7;
 }
 
-.connect-heading {
-  align-items: start;
-}
-
 .social-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
