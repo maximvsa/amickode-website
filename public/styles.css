@@ -54,7 +54,7 @@ body::before {
   z-index: 0;
   inset: -80px;
   background: url("/images/amickode-technologies-wide.png") center 16vh /
-    min(1760px, 145vw) auto no-repeat;
+    clamp(2400px, 200vw, 3600px) auto no-repeat;
   content: "";
   filter: blur(18px);
   opacity: 0.06;
