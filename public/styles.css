@@ -53,11 +53,11 @@ body::before {
   position: fixed;
   z-index: 0;
   inset: -80px;
-  background: url("/images/amickode-technologies-wide.png") center 18vh /
-    min(1480px, 125vw) auto no-repeat;
+  background: url("/images/amickode-technologies-wide.png") center 16vh /
+    min(1760px, 145vw) auto no-repeat;
   content: "";
-  filter: blur(28px);
-  opacity: 0.045;
+  filter: blur(18px);
+  opacity: 0.06;
   pointer-events: none;
 }
 
